@@ -1,0 +1,10 @@
+FROM node:latest
+
+RUN mkdir -p /var/www/api/dist
+WORKDIR /var/www/api
+
+COPY ./package*.json ./.babelrc ./
+COPY ./src ./src
+
+RUN npm install -g babel-cli
+RUN npm install

@@ -1,0 +1,10 @@
+FROM node:latest
+
+RUN mkdir -p /var/www/api/dist
+WORKDIR /var/www/api
+RUN mkdir -p config
+
+COPY ./package*.json ./
+COPY ./dist ./dist
+
+RUN npm install

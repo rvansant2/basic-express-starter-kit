@@ -1,0 +1,26 @@
+version: '3'
+services:
+
+  app:
+    build:
+      context: ./
+      dockerfile: Dockerfile.dev
+    depends_on:
+      - app-watch
+    command: npm run dev
+    environment:
+      - PORT=3001
+    ports:
+      - 3001:3001
+    volumes:
+      - ./dist:/var/www/api/dist:consistent
+
+  app-watch:
+    build:
+      context: ./
+      dockerfile: Dockerfile.watch
+    command: npm run watch
+    volumes:
+      - ./dist:/var/www/api/dist:consistent
+      - ./src:/var/www/api/src:consistent
+
